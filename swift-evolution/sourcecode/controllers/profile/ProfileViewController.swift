@@ -109,7 +109,7 @@ extension ProfileViewController {
             return
         }
         
-        if let reachability = self.reachability, reachability.connection != .none {
+        if let reachability = self.reachability, reachability.connection != .unavailable {
             GithubService.profile(from: username) { [weak self] result in
                 guard let github = result.value else {
                     return

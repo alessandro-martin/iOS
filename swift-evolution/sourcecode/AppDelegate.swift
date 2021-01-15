@@ -24,11 +24,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        MSAppCenter.start(
-            "<AppCenter Key",
-            withServices: [
-                MSAnalytics.self,
-                MSCrashes.self
+        AppCenter.start(
+            withAppSecret: "<AppCenter Key",
+            services: [
+                Analytics.self,
+                Crashes.self
             ]
         )
 
@@ -115,7 +115,7 @@ extension AppDelegate {
             switch settings.authorizationStatus {
             case .notDetermined, .denied:
                 self?.authorizedNotification = false
-            case .authorized, .provisional:
+                case .authorized, .provisional, .ephemeral:
                 self?.authorizedNotification = true
             @unknown default:
                 break
